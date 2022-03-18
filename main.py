@@ -1,6 +1,7 @@
 import random
 from itertools import combinations
 ############## -------CLASSES-----------
+
 class Card:
     def __init__(self, number, suit):
         self.number = str(number)
@@ -67,7 +68,6 @@ class Player:
     handOf7: list[Card] = []
     strength = []
     allCombinations: list[Card] = [[]]
-
     def __init__(self, card1: Card, card2: Card):
         self.card1 = card1
         self.card2 = card2
@@ -80,22 +80,27 @@ class Player:
 
 
 # # -------METHODS-----------
+
+#DOESNT WORK
 def compareStrength(p1: list[int], p2: list[int]):
-    if len(p1) > len(p2):
-        length = len(p1)
+    size = None
+    if len(p1)>len(p2):
+        size = len(p2)
     else:
-        length = len(p2)
-    for i in range(length):
+        size = len(p1)
+    for i in range(size):
         if p1[i] > p2[i]:
             return 1
-        elif p1[i] == p2[i]:
-            if i == length:
-                print("TIE")
-                return 3
-            continue
-        else:
+        elif p2[i] > p1[i]:
             return 2
-    return 1
+    return 3
+
+
+#DOESMT WORK
+
+
+
+
 
 
 def sortByRank(hand: list[Card]):
@@ -508,11 +513,13 @@ def isHighCard(hand: list[Card]):
 theDeck = Deck()
 theDeck.shuffle()
 # get input for the number of players from the user
-numOfPlayers = int(input("Input number of players: "))
-while numOfPlayers < 2 or numOfPlayers > 8:
-    print("Please enter a value between 2 and 8")
-    numOfPlayers = int(input("Input number of players: "))
+numOfPlayers = input("Input number of players between 2 and 10: ")
+# while not isinstance(numOfPlayers, int):
+#     print('enter int val')
+#     numOfPlayers = input('Input number of players between 2 and 10: ')
+        
 
+numOfPlayers = int(numOfPlayers)
 ## create "numOfPLayers" Players as "Player" objects in a Player list called "playerArray"
 playerList = []
 for i in range(numOfPlayers):
