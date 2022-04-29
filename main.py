@@ -114,6 +114,12 @@ slider.grid(row=1, column=0)
 label = Label(root, text='How many players are playing?')
 label.grid(row=2, column=0)
 
+bg = PhotoImage(file="poker_background.png")
+
+# Show image using label
+label1 = Label(root, image=bg)
+label1.place(x=0, y=0)
+
 
 
 root.mainloop()
