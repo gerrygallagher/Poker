@@ -579,9 +579,9 @@ def isHighCard(hand: list[Card]):
 # # for i in range(len(playerList)):
 # #     ret = compareStrength(playerList[i].strength, playerList[i+1].strength)
 # #
-
-
-
+#
+#
+#
 
 
 
