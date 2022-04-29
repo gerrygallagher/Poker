@@ -494,86 +494,91 @@ def isHighCard(hand: list[Card]):
 
 
 ############## -------MAIN LOGIC-----------
-
-# initialize and shuffle the deck of cards
-theDeck = Deck()
-theDeck.shuffle()
-# get input for the number of players from the user
-numOfPlayers = input("Input number of players between 2 and 10: ")
-# while not isinstance(numOfPlayers, int):
-#     print('enter int val')
-#     numOfPlayers = input('Input number of players between 2 and 10: ')
-
-
-numOfPlayers = int(numOfPlayers)
-## create "numOfPLayers" Players as "Player" objects in a Player list called "playerArray"
-playerList = []
-for i in range(numOfPlayers):
-    tempCard1 = Card(theDeck.deck[i].number, theDeck.deck[i].suit)
-    tempCard2 = Card(theDeck.deck[numOfPlayers + i].number, theDeck.deck[numOfPlayers + i].suit)
-    tempPlayer = Player(tempCard1, tempCard2)
-    playerList.append(tempPlayer)
-# initialize the board
-theBoard = Board(theDeck.deck[(numOfPlayers * 2) + 1], theDeck.deck[(numOfPlayers * 2) + 2],
-                 theDeck.deck[(numOfPlayers * 2) + 3], theDeck.deck[(numOfPlayers * 2) + 4],
-                 theDeck.deck[(numOfPlayers * 2) + 5])
-# set each players "hand of 7" variable to a list containing their two hole cards along with the board
-for i in playerList:
-    i.handOf7 = [i.card1, i.card2, theBoard.flop1, theBoard.flop2, theBoard.flop3, theBoard.turn, theBoard.river]
-# send each players "handof7" to the "combinationsOfFive" function and store them in each players "allcombinations" attriubte
-for i in range(numOfPlayers):
-    playerList[i].allCombinations = combinationsOfFive(playerList[i].handOf7)
-# send each players "allcombinations" attribute to the "evaluateHand" function, and store the returned value in that players "strength" attribute
-for i in range(numOfPlayers):
-    playerList[i].strength = evaluteHand(playerList[i].allCombinations)
-
-# compare each players strength and evaluate a winner
-
-
-# winner is the index of each player in playerlist with the best hand
-# winner = [0]
-# for i in range(1, numOfPlayers - 1):
-#     returned = compareStrength(playerList[winner[0]].strength, playerList[i].strength)
-#     if returned == 2:
-#         winner[0] = i
-#     if returned == 3:
-#         winner.append(i)
-
-# print statements
-print(theBoard.__str__())
-for i in range(numOfPlayers):
-    print()
-    print('Player {}'.format(i + 1))
-    print(playerList[i].__str__())
-    print(playerList[i].strength)
-
-print()
-print()
-print()
-print()
 #
-# for i in range(len(winner)):
-#     if len(winner) == 1:
-#         print('Player {} Wins!'.format(winner[i] + 1))
-#         print(playerList[winner[i]].__str__())
-#         print(playerList[winner[i]].strength)
-#     else:
-#         print('Player {} Tied for first'.format(winner[i + 1]))
-#         print(playerList[winner[i]].__str__())
-#         print(playerList[winner[i]].strength)
-
-
-
-
-# winners is a list which will be full of the indexes in playerlist that are all the winners of the hand
-winners = []
-#first determine one winner, and then compare everyone else against that winner, and if they tie, then add their indices to winners[]
-
-
-
-for i in range(len(playerList)):
-    ret = compareStrength(playerList[i].strength, playerList[i+1].strength)
-
+# # initialize and shuffle the deck of cards
+# theDeck = Deck()
+# theDeck.shuffle()
+# # get input for the number of players from the user
+# numOfPlayers = input("Input number of players between 2 and 10: ")
+# # while not isinstance(numOfPlayers, int):
+# #     print('enter int val')
+# #     numOfPlayers = input('Input number of players between 2 and 10: ')
+#
+#
+# numOfPlayers = int(numOfPlayers)
+# ## create "numOfPLayers" Players as "Player" objects in a Player list called "playerArray"
+# playerList = []
+# for i in range(numOfPlayers):
+#     tempCard1 = Card(theDeck.deck[i].number, theDeck.deck[i].suit)
+#     tempCard2 = Card(theDeck.deck[numOfPlayers + i].number, theDeck.deck[numOfPlayers + i].suit)
+#     tempPlayer = Player(tempCard1, tempCard2)
+#     playerList.append(tempPlayer)
+# # initialize the board
+# theBoard = Board(theDeck.deck[(numOfPlayers * 2) + 1], theDeck.deck[(numOfPlayers * 2) + 2],
+#                  theDeck.deck[(numOfPlayers * 2) + 3], theDeck.deck[(numOfPlayers * 2) + 4],
+#                  theDeck.deck[(numOfPlayers * 2) + 5])
+# # set each players "hand of 7" variable to a list containing their two hole cards along with the board
+# for i in playerList:
+#     i.handOf7 = [i.card1, i.card2, theBoard.flop1, theBoard.flop2, theBoard.flop3, theBoard.turn, theBoard.river]
+# # send each players "handof7" to the "combinationsOfFive" function and store them in each players "allcombinations" attriubte
+# for i in range(numOfPlayers):
+#     playerList[i].allCombinations = combinationsOfFive(playerList[i].handOf7)
+# # send each players "allcombinations" attribute to the "evaluateHand" function, and store the returned value in that players "strength" attribute
+# for i in range(numOfPlayers):
+#     playerList[i].strength = evaluteHand(playerList[i].allCombinations)
+#
+# # compare each players strength and evaluate a winner
+#
+#
+# # winner is the index of each player in playerlist with the best hand
+# # winner = [0]
+# # for i in range(1, numOfPlayers - 1):
+# #     returned = compareStrength(playerList[winner[0]].strength, playerList[i].strength)
+# #     if returned == 2:
+# #         winner[0] = i
+# #     if returned == 3:
+# #         winner.append(i)
+#
+# # print statements
+# print(theBoard.__str__())
+# for i in range(numOfPlayers):
+#     print()
+#     print('Player {}'.format(i + 1))
+#     print(playerList[i].__str__())
+#     print(playerList[i].strength)
+#
+# print()
+# print()
+# print()
+# print()
+# #
+# # for i in range(len(winner)):
+# #     if len(winner) == 1:
+# #         print('Player {} Wins!'.format(winner[i] + 1))
+# #         print(playerList[winner[i]].__str__())
+# #         print(playerList[winner[i]].strength)
+# #     else:
+# #         print('Player {} Tied for first'.format(winner[i + 1]))
+# #         print(playerList[winner[i]].__str__())
+# #         print(playerList[winner[i]].strength)
+#
+#
+#
+#
+# # winners is a list which will be full of the indexes in playerlist that are all the winners of the hand
+# winners = []
+# #first determine one winner, and then compare everyone else against that winner, and if they tie, then add their indices to winners[]
+# first_winner: Player = playerList[0]
+# for i in playerList:
+#     ret = compareStrength(first_winner.strength, i.strength)
+#     if ret == 2:
+#         first_winner = i
+#
+# print(first_winner)
+#
+# # for i in range(len(playerList)):
+# #     ret = compareStrength(playerList[i].strength, playerList[i+1].strength)
+# #
 
 
 
