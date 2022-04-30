@@ -22,7 +22,6 @@ class Card:
         else:
             return int(self.number)
 
-
 class Board:
     def __init__(self, flop1, flop2, flop3, turn, river):
         self.flop1 = flop1
@@ -34,7 +33,6 @@ class Board:
     def __str__(self):
         return 'Board:  ' + self.flop1.__str__() + ', ' + self.flop2.__str__() + ', ' + \
                self.flop3.__str__() + ', ' + self.turn.__str__() + ', ' + self.river.__str__()
-
 
 class Deck:
     def __init__(self):
@@ -95,9 +93,7 @@ def compareStrength(p1: list[int], p2: list[int]):
         elif p2[i] > p1[i]:
             return 2
     return 3
-
-
-# DOESMT WORK
+# DOESNT WORK
 
 
 def sortByRank(hand: list[Card]):
