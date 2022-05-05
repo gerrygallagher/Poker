@@ -474,6 +474,9 @@ def reveal_others():
     p6.config(text='Player 6: ' + str(playerList[5].card1.__str__()) + ' ' + str(playerList[5].card2.__str__()))
     p7.config(text='Player 7: ' + str(playerList[6].card1.__str__()) + ' ' + str(playerList[6].card2.__str__()))
     p8.config(text='Player 8: ' + str(playerList[7].card1.__str__()) + ' ' + str(playerList[7].card2.__str__()))
+
+
+    #only gets displayed if theres 8 players, bc if there is 7 or less, p8.config is an error and it stops working
     winner_label = Label(frame36, text="The Winner is"+'\n'+str(winner))
     winner_label.pack()
     next_button.config(command=doNone)
@@ -484,8 +487,6 @@ def doNone():
 root = Tk()
 root.resizable(width=False, height=False)
 root.title("Poker")
-
-
 
 button = Button(root, width= 8, height=4, text='Start', command=rungame)
 button.grid(row=0, column=0)
